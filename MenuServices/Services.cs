@@ -48,6 +48,7 @@ public class MenuServices
         {
             //read the file
             var movieLines = File.ReadAllLines(filePath);
+            int titles = 0;
 
             //parse the lines
             foreach (var movieLine in movieLines)
@@ -78,9 +79,11 @@ public class MenuServices
                 {
                     help.WriteData("\t" + category);
                 }
+                titles++;
 
                 Console.WriteLine("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
             }
+            help.WriteInfo($"{titles} movies found.");
             menu.DisplayMenu();
         }
         //if all else fails
@@ -117,6 +120,7 @@ public class MenuServices
             {
                 var movieLines = File.ReadAllLines(movieFilePath);
                 bool found = false;
+                int matches = 0;
 
                 foreach (var movieLine in movieLines)
                 {
@@ -179,6 +183,7 @@ public class MenuServices
 
                         Console.WriteLine("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
                         found = true;
+                        matches++;
                     }
                 }
 
@@ -188,6 +193,7 @@ public class MenuServices
                 }
                 else
                 {
+                    help.WriteInfo($"Found {matches} matching titles for '{inputTitle}'.");
                     menu.DisplayMenu();
                     break;
                 }
@@ -236,6 +242,7 @@ public class MenuServices
             { // Read the file
                 var movieLines = File.ReadAllLines(filePath);
                 bool found = false;
+                int matches = 0;
                 //read each line in the file
                 foreach (var movieLine in movieLines)
                 {//parse movie info and check format
@@ -264,6 +271,7 @@ public class MenuServices
                         Console.WriteLine("-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --");
 
                         found = true;
+                        matches++;
 
 
                     }
@@ -271,6 +279,7 @@ public class MenuServices
                 //get back to the main menu if successful search
                 if (found)
                 {
+                    help.WriteInfo($"Found {matches} matching categories for '{inputCategory}'.");
                     menu.DisplayMenu();
                     break;
                 }
